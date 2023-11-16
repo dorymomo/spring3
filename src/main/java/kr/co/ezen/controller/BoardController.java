@@ -25,15 +25,15 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping("/list")
-	public String getList(Model m, Criteria cri) {
+	public String getList(Model mo, Criteria cri) {
 		
 		List<Board> li=boardService.getList(cri);
-		m.addAttribute("li",li);
+		mo.addAttribute("li",li);
 		
 		PageCre pageCre=new PageCre();
 		pageCre.setCri(cri);
 		pageCre.setTotalCount(boardService.totalCount(cri));
-		m.addAttribute("pageCre",pageCre); //페이징 처리하기 위해 list.jsp로 넘겨야한다
+		mo.addAttribute("pageCre",pageCre); //페이징 처리하기 위해 list.jsp로 넘겨야한다
 		
 		
 		return "board/list";
